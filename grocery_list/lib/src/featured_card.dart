@@ -10,8 +10,6 @@
 	 the data into the component in the future for the on click secion.
 */
 
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/Cupertino.dart';
 import 'package:grocery_list/src/spawn_menu.dart';
@@ -22,11 +20,13 @@ class FeaturedCard extends StatefulWidget {
     this.title = "",
     this.imageSrc = "",
     required this.ingredients,
+    required this.directions,
   }) : super(key: key);
 
   final String title;
   final String imageSrc;
   final List<String> ingredients;
+  final List<String> directions;
 
   @override
   _FeaturedCardState createState() => _FeaturedCardState();
@@ -86,6 +86,7 @@ class _FeaturedCardState extends State<FeaturedCard> {
               title: widget.title,
               imageSrc: widget.imageSrc,
               ingredients: widget.ingredients,
+              directions: widget.directions,
             );
           },
           transitionsBuilder: (context, animation, secondaryAnimation, child) {

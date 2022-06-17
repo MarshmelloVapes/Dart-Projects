@@ -1,14 +1,19 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:grocery_list/views/recipe_list.dart';
 
 class QuickSelectCard extends StatefulWidget {
   const QuickSelectCard({
     Key? key,
     this.title = "",
+    required this.cardTitle,
+    required this.cardImg,
   }) : super(key: key);
 
   final String title;
+  final String cardTitle;
+  final String cardImg;
 
   @override
   _QuickSelectState createState() => _QuickSelectState();
@@ -17,16 +22,30 @@ class QuickSelectCard extends StatefulWidget {
 class _QuickSelectState extends State<QuickSelectCard> {
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        primary: const Color.fromRGBO(238, 214, 211, 1),
-        onPrimary: const Color.fromRGBO(103, 89, 94, 1),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
+    return Hero(
+      tag: 'callRecipeMenu${widget.title}',
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: const Color.fromRGBO(238, 214, 211, 1),
+          onPrimary: const Color.fromRGBO(103, 89, 94, 1),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
         ),
+        onPressed: () => Navigator.of(context).push(
+          PageRouteBuilder(
+            opaque: false,
+            pageBuilder: (context, _, __) {
+              return RecipeListView(
+                title: widget.title,
+                cardImg: widget.cardImg,
+                cardTitle: widget.cardTitle,
+              );
+            },
+          ),
+        ),
+        child: Text(widget.title),
       ),
-      onPressed: () {},
-      child: Text(widget.title),
     );
   }
 }
