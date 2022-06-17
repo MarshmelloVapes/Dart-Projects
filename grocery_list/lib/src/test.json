@@ -1,0 +1,52 @@
+[
+  {
+    "Chicken": 
+      {
+        "id": 
+          {
+            "1": {
+              "title": "Chicken Flautas",
+              "imgSrc": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/chickenflautas1-1646065889.jpg?crop=1.00xw:1.00xh;0,0&resize=980:*",
+              "ingredients": {
+                "0": "Coocked Chicken",
+                "1": "Chopped Green Chiles",
+                "2": "Shredded Cheese",
+                "3": "Queso Blanco",
+                "4": "Salt",
+                "5": "Hot Sauce",
+                "6": "Flour Tortillas",
+                "7": "Vegetable Oil"
+              },
+              "directions": {
+                "0": "In a large bowl, combine chicken, chiles, cheeses, salt, and hot sauce (if using).",
+                "1": "Lay 1 tortilla down on a work surface. Spread a heaping 1/4 cup of the chicken mixture onto the bottom third of the tortilla. Roll up tightly and place seam side down on a plate. Repeat with remaining tortillas and filling.",
+                "2": "In a 10” skillet, heat oil over medium-high heat until the temperature reaches between 350-375 degrees F. (You want to hear a sizzle as soon as the food hits the oil.)",
+                "3": "Add 3 of the flautas to the oil, seam side down. Cook, turning every 30 to 60 seconds, until golden all over, about 2 to 3 minutes. Transfer flautas to a large paper towel-lined plate or baking sheet. Repeat with remaining flautas. Serve immediately with pico de gallo, sour cream, and guacamole."
+              }
+            },
+            "2": {
+              "title": "Random Chicken",
+              "imgSrc": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/chickenflautas1-1646065889.jpg?crop=1.00xw:1.00xh;0,0&resize=980:*",
+              "ingredients": {
+                "0": "Coocked Chicken",
+                "1": "Chopped Green Chiles",
+                "2": "Shredded Cheese",
+                "3": "Queso Blanco",
+                "4": "Salt",
+                "5": "Hot Sauce",
+                "6": "Flour Tortillas",
+                "7": "Vegetable Oil"
+              },
+              "directions": {
+                "0": "ahhh",
+                "1": "Grab the wall!",
+                "2": "Wiggle like youre trying to make",
+                "3": "That ass fall off!"
+              }
+            }
+          }
+        
+      }
+    
+  }
+]
