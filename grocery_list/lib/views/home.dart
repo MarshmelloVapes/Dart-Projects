@@ -140,6 +140,8 @@ class HomeView extends StatelessWidget {
                 title: items,
                 cardTitle: quickFoodsTitile,
                 cardImg: quickFoodsPhoto,
+                ingredients: featuredFoodIngredients,
+                directions: featuedFoodDirections,
               ),
             ),
         ],

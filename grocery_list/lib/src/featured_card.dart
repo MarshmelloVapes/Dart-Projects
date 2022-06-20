@@ -37,7 +37,7 @@ class _FeaturedCardState extends State<FeaturedCard> {
   Widget build(BuildContext context) {
     return CupertinoButton(
       child: Hero(
-        tag: 'featuredImage',
+        tag: 'SM.${widget.title}',
         child: Container(
           height: 380,
           width: 400,

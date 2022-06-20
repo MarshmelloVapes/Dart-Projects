@@ -3,8 +3,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SpawnMenu extends StatefulWidget {
-  const SpawnMenu({
+class SpawnMenuList extends StatefulWidget {
+  const SpawnMenuList({
     Key? key,
     required this.title,
     required this.imageSrc,
@@ -21,7 +21,7 @@ class SpawnMenu extends StatefulWidget {
   _SpawnMenuState createState() => _SpawnMenuState();
 }
 
-class _SpawnMenuState extends State<SpawnMenu> {
+class _SpawnMenuState extends State<SpawnMenuList> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -132,8 +132,7 @@ class _SpawnMenuState extends State<SpawnMenu> {
 
   Hero imageContainerHeroWidget(BuildContext context) {
     return Hero(
-      transitionOnUserGestures: true,
-      tag: 'SM.${widget.title}',
+      tag: 'RM.SP.${widget.title}',
       child: GestureDetector(
         onVerticalDragEnd: (details) {
           Navigator.pop(context);

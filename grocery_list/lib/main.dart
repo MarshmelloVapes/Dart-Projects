@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:grocery_list/views/home.dart';
 
 void main() {
-  runApp(const CupertinoApp(home: MainPage()));
+  runApp(
+    const CupertinoApp(home: MainPage()),
+  );
 }
 
 class MainPage extends StatelessWidget {
