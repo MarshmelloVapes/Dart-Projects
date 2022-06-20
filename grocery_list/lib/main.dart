@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:grocery_list/views/grocery_list.dart';
 import 'package:grocery_list/views/home.dart';
 
 void main() {
@@ -38,10 +39,8 @@ class MainPage extends StatelessWidget {
               );
             case 1:
               return CupertinoTabView(
-                  builder: (context) => Container(
-                        alignment: Alignment.center,
-                        child: const Text('Gorecery List Page'),
-                      ));
+                builder: (context) => GroceryListView(),
+              );
             case 2:
             default:
               return Container(
