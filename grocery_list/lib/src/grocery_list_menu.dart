@@ -8,9 +8,11 @@ class GroceryListMenu extends StatefulWidget {
   GroceryListMenu({
     Key? key,
     required this.produceList,
+    required this.daysOfWeek,
   }) : super(key: key);
 
   List<String> produceList;
+  List<String> daysOfWeek;
 
   @override
   _GroceryListMenuState createState() => _GroceryListMenuState();
@@ -39,13 +41,15 @@ class _GroceryListMenuState extends State<GroceryListMenu> {
                   topSmallBar(),
                   Expanded(
                     child: ListView(
-                      padding: const EdgeInsets.all(0),
+                      padding: const EdgeInsets.only(top: 0),
                       children: <Widget>[
                         mainSectionText("Produce"),
                         mainTextSelectionMethod(widget.produceList),
-                        mainSectionText("Meats"),
+                        mainSectionText("Protein"),
                         mainTextSelectionMethod(widget.produceList),
-                        mainSectionText("Frozens"),
+                        mainSectionText("Frozen"),
+                        mainTextSelectionMethod(widget.produceList),
+                        mainSectionText("Other"),
                         mainTextSelectionMethod(widget.produceList),
                         SizedBox(height: 100)
                       ],
@@ -56,7 +60,92 @@ class _GroceryListMenuState extends State<GroceryListMenu> {
             ),
           ),
         ),
+        Positioned(
+          bottom: 90,
+          right: 6,
+          child: Icon(
+            Icons.add_circle,
+            size: 64,
+            color: Color.fromRGBO(255, 174, 188, 1),
+          ),
+        )
       ],
+    );
+  }
+
+  Padding dayOfWeekPlanMethod(String day) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 12, left: 12),
+      child: Stack(
+        children: [
+          Container(
+            height: 170,
+            width: 150,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              color: Colors.white,
+            ),
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(top: 6),
+                  child: SizedBox(
+                    width: 150,
+                    child: Text(
+                      day,
+                      style: TextStyle(
+                        fontSize: 26,
+                        color: Color.fromRGBO(103, 89, 94, 1),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 6),
+                  child: SizedBox(
+                    width: 150,
+                    child: Text(
+                      'Planned',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Color.fromRGBO(103, 89, 94, 1),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 6),
+                  child: SizedBox(
+                    width: 150,
+                    child: Text(
+                      'Lemon Baked Chicken Thighs',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color.fromRGBO(103, 89, 94, 1),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+                Spacer(),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 6),
+                  child: SizedBox(
+                    width: 150,
+                    child: Icon(
+                      Icons.check_box_rounded,
+                      size: 48,
+                      color: Color.fromRGBO(255, 174, 188, 1),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 

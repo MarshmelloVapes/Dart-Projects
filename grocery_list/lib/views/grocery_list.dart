@@ -6,6 +6,7 @@ class GroceryListView extends StatelessWidget {
   GroceryListView({Key? key}) : super(key: key);
 
   List<String> produceList = ["Whole Milk", "50/50 Milk", "Pizza Cheese", "Yogurt"];
+  List<String> daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,10 @@ class GroceryListView extends StatelessWidget {
       backgroundColor: const Color.fromRGBO(238, 214, 211, 1),
       child: Stack(
         children: [
-          GroceryListMenu(produceList: produceList),
+          GroceryListMenu(
+            produceList: produceList,
+            daysOfWeek: daysOfWeek,
+          ),
         ],
       ),
     );
