@@ -2,10 +2,9 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:grocery_list/src/grocery_list_menu_alt.dart';
 
-class GroceryListMenu extends StatefulWidget {
-  GroceryListMenu({
+class GroceryListMenuAlt extends StatefulWidget {
+  GroceryListMenuAlt({
     Key? key,
     required this.produceList,
   }) : super(key: key);
@@ -13,10 +12,10 @@ class GroceryListMenu extends StatefulWidget {
   List<String> produceList;
 
   @override
-  _GroceryListMenuState createState() => _GroceryListMenuState();
+  _GroceryListMenuStateAlt createState() => _GroceryListMenuStateAlt();
 }
 
-class _GroceryListMenuState extends State<GroceryListMenu> {
+class _GroceryListMenuStateAlt extends State<GroceryListMenuAlt> {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -26,7 +25,8 @@ class _GroceryListMenuState extends State<GroceryListMenu> {
           child: Hero(
             tag: 'GLM',
             child: Container(
-              height: 600,
+              height: 120,
+              width: MediaQuery.of(context).size.width,
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -37,20 +37,6 @@ class _GroceryListMenuState extends State<GroceryListMenu> {
               child: Column(
                 children: [
                   topSmallBar(),
-                  Expanded(
-                    child: ListView(
-                      padding: const EdgeInsets.all(0),
-                      children: <Widget>[
-                        mainSectionText("Produce"),
-                        mainTextSelectionMethod(widget.produceList),
-                        mainSectionText("Meats"),
-                        mainTextSelectionMethod(widget.produceList),
-                        mainSectionText("Frozens"),
-                        mainTextSelectionMethod(widget.produceList),
-                        SizedBox(height: 100)
-                      ],
-                    ),
-                  ),
                 ],
               ),
             ),
@@ -84,11 +70,10 @@ class _GroceryListMenuState extends State<GroceryListMenu> {
           padding: const EdgeInsets.only(right: 12),
           child: Icon(
             Icons.check_box_outline_blank,
-            color: Color.fromRGBO(255, 174, 188, 1),
           ),
           onPressed: () {},
         ),
-        Text('1 ${item}'),
+        Text(item),
       ],
     );
   }
@@ -96,7 +81,7 @@ class _GroceryListMenuState extends State<GroceryListMenu> {
   Container mainSectionText(String label) {
     return Container(
       margin: const EdgeInsets.only(
-        top: 0,
+        top: 12,
         left: 12,
         right: 12,
       ),
@@ -133,26 +118,9 @@ class _GroceryListMenuState extends State<GroceryListMenu> {
         height: 5,
         width: 60,
       ),
-      onPressed: () => Navigator.of(context).push(
-        PageRouteBuilder(
-          transitionDuration: const Duration(milliseconds: 500),
-          reverseTransitionDuration: const Duration(milliseconds: 500),
-          opaque: false,
-          pageBuilder: (context, _, __) {
-            return GroceryListMenuAlt(
-              produceList: widget.produceList,
-            );
-          },
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            final tween = Tween(begin: 0.0, end: 1.0);
-            final fadeAnimation = animation.drive(tween);
-            return FadeTransition(
-              opacity: fadeAnimation,
-              child: child,
-            );
-          },
-        ),
-      ),
+      onPressed: () {
+        Navigator.pop(context);
+      },
     );
   }
 }

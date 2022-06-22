@@ -13,10 +13,7 @@ class GroceryListView extends StatelessWidget {
       backgroundColor: const Color.fromRGBO(238, 214, 211, 1),
       child: Stack(
         children: [
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: GroceryListMenu(produceList: produceList),
-          ),
+          GroceryListMenu(produceList: produceList),
         ],
       ),
     );
