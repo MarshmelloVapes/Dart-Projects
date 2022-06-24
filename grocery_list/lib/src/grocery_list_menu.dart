@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grocery_list/src/grocery_list_menu_alt.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class GroceryListMenu extends StatefulWidget {
   GroceryListMenu({
@@ -24,69 +25,66 @@ class _GroceryListMenuState extends State<GroceryListMenu> {
     return Stack(
       children: [
         SafeArea(
-          child: SizedBox(
-            height: 200,
-            width: MediaQuery.of(context).size.width,
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 12),
-              // Change this for something in the future.
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  for (var i in widget.daysOfWeek)
-                    Padding(
-                      padding: const EdgeInsets.only(left: 12),
-                      child: CupertinoContextMenu(
-                        actions: <Widget>[
-                          CupertinoContextMenuAction(
-                            child: Text('Add Recipe'),
-                            onPressed: () {},
-                          ),
-                          CupertinoContextMenuAction(
-                            child: Text('Remove Recipe'),
-                            onPressed: () {},
-                          ),
-                        ],
-                        child: Container(
-                          height: 150,
-                          width: MediaQuery.of(context).size.width / 2,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: Colors.white,
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(
-                                i,
-                                style: TextStyle(
-                                  fontSize: 28,
-                                  color: Color.fromRGBO(103, 89, 94, 1),
-                                ),
+          child: CarouselSlider(
+            options: CarouselOptions(height: 200.0),
+            items: widget.daysOfWeek.map((i) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return Container(
+                    width: MediaQuery.of(context).size.width,
+                    margin: EdgeInsets.only(bottom: 12, left: 6, right: 6),
+                    decoration: BoxDecoration(color: Colors.transparent),
+                    child: CupertinoContextMenu(
+                      actions: <Widget>[
+                        CupertinoContextMenuAction(
+                          child: Text('Add Recipe'),
+                          onPressed: () {},
+                        ),
+                        CupertinoContextMenuAction(
+                          child: Text('Remove Recipe'),
+                          onPressed: () {},
+                        ),
+                      ],
+                      child: Container(
+                        height: 150,
+                        width: MediaQuery.of(context).size.width / 2,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.white,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(
+                              i,
+                              style: TextStyle(
+                                fontSize: 28,
+                                color: Color.fromRGBO(103, 89, 94, 1),
                               ),
-                              Text(
-                                '19',
-                                style: TextStyle(
-                                  fontSize: 48,
-                                  color: Color.fromRGBO(103, 89, 94, 1),
-                                  fontWeight: FontWeight.w200,
-                                ),
+                            ),
+                            Text(
+                              '19',
+                              style: TextStyle(
+                                fontSize: 48,
+                                color: Color.fromRGBO(103, 89, 94, 1),
+                                fontWeight: FontWeight.w200,
                               ),
-                              Text(
-                                'is not planned.\nPlease add some recipes!',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                ),
-                                textAlign: TextAlign.center,
+                            ),
+                            Text(
+                              'is not planned.\nPlease add some recipes!',
+                              style: TextStyle(
+                                fontSize: 14,
                               ),
-                            ],
-                          ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
                         ),
                       ),
-                    )
-                ],
-              ),
-            ),
+                    ),
+                  );
+                },
+              );
+            }).toList(),
           ),
         ),
         Align(
