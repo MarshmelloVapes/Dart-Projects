@@ -23,6 +23,72 @@ class _GroceryListMenuState extends State<GroceryListMenu> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        SafeArea(
+          child: SizedBox(
+            height: 200,
+            width: MediaQuery.of(context).size.width,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              // Change this for something in the future.
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  for (var i in widget.daysOfWeek)
+                    Padding(
+                      padding: const EdgeInsets.only(left: 12),
+                      child: CupertinoContextMenu(
+                        actions: <Widget>[
+                          CupertinoContextMenuAction(
+                            child: Text('Add Recipe'),
+                            onPressed: () {},
+                          ),
+                          CupertinoContextMenuAction(
+                            child: Text('Remove Recipe'),
+                            onPressed: () {},
+                          ),
+                        ],
+                        child: Container(
+                          height: 150,
+                          width: MediaQuery.of(context).size.width / 2,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: Colors.white,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                i,
+                                style: TextStyle(
+                                  fontSize: 28,
+                                  color: Color.fromRGBO(103, 89, 94, 1),
+                                ),
+                              ),
+                              Text(
+                                '19',
+                                style: TextStyle(
+                                  fontSize: 48,
+                                  color: Color.fromRGBO(103, 89, 94, 1),
+                                  fontWeight: FontWeight.w200,
+                                ),
+                              ),
+                              Text(
+                                'is not planned.\nPlease add some recipes!',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                ],
+              ),
+            ),
+          ),
+        ),
         Align(
           alignment: Alignment.bottomCenter,
           child: Hero(
@@ -63,10 +129,14 @@ class _GroceryListMenuState extends State<GroceryListMenu> {
         Positioned(
           bottom: 90,
           right: 6,
-          child: Icon(
-            Icons.add_circle,
-            size: 64,
-            color: Color.fromRGBO(255, 174, 188, 1),
+          child: CupertinoButton(
+            padding: const EdgeInsets.all(0),
+            child: Icon(
+              Icons.add_circle,
+              size: 64,
+              color: Color.fromRGBO(255, 174, 188, 1),
+            ),
+            onPressed: () {},
           ),
         )
       ],
