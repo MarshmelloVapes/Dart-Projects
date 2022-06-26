@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grocery_list/src/grocery_list_menu_alt.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:intl/intl.dart';
 
 class GroceryListMenu extends StatefulWidget {
   GroceryListMenu({
@@ -15,6 +16,9 @@ class GroceryListMenu extends StatefulWidget {
   List<String> produceList;
   List<String> daysOfWeek;
 
+  var day = DateFormat('EEEE').format(DateTime.now());
+  var startDayIndex = 0;
+
   @override
   _GroceryListMenuState createState() => _GroceryListMenuState();
 }
@@ -22,11 +26,38 @@ class GroceryListMenu extends StatefulWidget {
 class _GroceryListMenuState extends State<GroceryListMenu> {
   @override
   Widget build(BuildContext context) {
+    if (widget.day == "Monday") {
+      widget.startDayIndex = 0;
+    }
+    if (widget.day == "Tuesday") {
+      widget.startDayIndex = 1;
+    }
+    if (widget.day == "Wednesday") {
+      widget.startDayIndex = 2;
+    }
+    if (widget.day == "Thursday") {
+      widget.startDayIndex = 3;
+    }
+    if (widget.day == "Friday") {
+      widget.startDayIndex = 4;
+    }
+    if (widget.day == "Saturday") {
+      widget.startDayIndex = 5;
+    }
+    if (widget.day == "Sunday") {
+      widget.startDayIndex = 6;
+    }
+
     return Stack(
       children: [
         SafeArea(
           child: CarouselSlider(
-            options: CarouselOptions(height: 200.0),
+            options: CarouselOptions(
+              height: 200.0,
+              viewportFraction: 0.7,
+              enlargeCenterPage: true,
+              initialPage: widget.startDayIndex,
+            ),
             items: widget.daysOfWeek.map((i) {
               return Builder(
                 builder: (BuildContext context) {
@@ -37,11 +68,36 @@ class _GroceryListMenuState extends State<GroceryListMenu> {
                     child: CupertinoContextMenu(
                       actions: <Widget>[
                         CupertinoContextMenuAction(
-                          child: Text('Add Recipe'),
+                          child: Row(
+                            children: const [
+                              Text('Add Recipe'),
+                              Spacer(),
+                              Icon(
+                                Icons.add_circle,
+                                size: 28,
+                                color: Colors.black,
+                              ),
+                            ],
+                          ),
                           onPressed: () {},
                         ),
                         CupertinoContextMenuAction(
-                          child: Text('Remove Recipe'),
+                          child: Row(
+                            children: const [
+                              Text(
+                                'Delete',
+                                style: TextStyle(
+                                  color: Colors.red,
+                                ),
+                              ),
+                              Spacer(),
+                              Icon(
+                                Icons.remove_circle,
+                                size: 28,
+                                color: Colors.black,
+                              )
+                            ],
+                          ),
                           onPressed: () {},
                         ),
                       ],
@@ -51,6 +107,14 @@ class _GroceryListMenuState extends State<GroceryListMenu> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
                           color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: Offset(5, 3),
+                            ),
+                          ],
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -63,7 +127,7 @@ class _GroceryListMenuState extends State<GroceryListMenu> {
                               ),
                             ),
                             Text(
-                              '19',
+                              '18',
                               style: TextStyle(
                                 fontSize: 48,
                                 color: Color.fromRGBO(103, 89, 94, 1),
