@@ -22,6 +22,18 @@ class _GroceryListMenuStateAlt extends State<GroceryListMenuAlt> {
       children: [
         Container(
           color: Colors.white,
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: CupertinoPageScaffold(
+            child: SafeArea(
+              child: Align(
+                alignment: Alignment.center,
+                child: Text(
+                  'This screen will show friends!\nCheck back at a later date!',
+                ),
+              ),
+            ),
+          ),
         ),
         bottomBarUp(context),
       ],

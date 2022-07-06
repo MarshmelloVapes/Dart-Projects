@@ -51,105 +51,7 @@ class _GroceryListMenuState extends State<GroceryListMenu> {
     return Stack(
       children: [
         SafeArea(
-          child: CarouselSlider(
-            options: CarouselOptions(
-              height: 200.0,
-              viewportFraction: 0.7,
-              enlargeCenterPage: true,
-              initialPage: widget.startDayIndex,
-            ),
-            items: widget.daysOfWeek.map((i) {
-              return Builder(
-                builder: (BuildContext context) {
-                  return Container(
-                    width: MediaQuery.of(context).size.width,
-                    margin: EdgeInsets.only(bottom: 12, left: 6, right: 6),
-                    decoration: BoxDecoration(color: Colors.transparent),
-                    child: CupertinoContextMenu(
-                      actions: <Widget>[
-                        CupertinoContextMenuAction(
-                          child: Row(
-                            children: const [
-                              Text('Add Recipe'),
-                              Spacer(),
-                              Icon(
-                                Icons.add_circle,
-                                size: 28,
-                                color: Colors.black,
-                              ),
-                            ],
-                          ),
-                          onPressed: () {},
-                        ),
-                        CupertinoContextMenuAction(
-                          child: Row(
-                            children: const [
-                              Text(
-                                'Delete',
-                                style: TextStyle(
-                                  color: Colors.red,
-                                ),
-                              ),
-                              Spacer(),
-                              Icon(
-                                Icons.remove_circle,
-                                size: 28,
-                                color: Colors.black,
-                              )
-                            ],
-                          ),
-                          onPressed: () {},
-                        ),
-                      ],
-                      child: Container(
-                        height: 150,
-                        width: MediaQuery.of(context).size.width / 2,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 2,
-                              blurRadius: 5,
-                              offset: Offset(5, 3),
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              i,
-                              style: TextStyle(
-                                fontSize: 28,
-                                color: Color.fromRGBO(103, 89, 94, 1),
-                              ),
-                            ),
-                            Text(
-                              '18',
-                              style: TextStyle(
-                                fontSize: 48,
-                                color: Color.fromRGBO(103, 89, 94, 1),
-                                fontWeight: FontWeight.w200,
-                              ),
-                            ),
-                            Text(
-                              'is not planned.\nPlease add some recipes!',
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              );
-            }).toList(),
-          ),
+          child: carouselSliderMethod(),
         ),
         Align(
           alignment: Alignment.bottomCenter,
@@ -188,20 +90,118 @@ class _GroceryListMenuState extends State<GroceryListMenu> {
             ),
           ),
         ),
-        Positioned(
-          bottom: 90,
-          right: 6,
-          child: CupertinoButton(
-            padding: const EdgeInsets.all(0),
-            child: Icon(
-              Icons.add_circle,
-              size: 64,
-              color: Color.fromRGBO(255, 174, 188, 1),
-            ),
-            onPressed: () {},
-          ),
-        )
+        addNewItemButton()
       ],
+    );
+  }
+
+  Positioned addNewItemButton() {
+    return Positioned(
+      bottom: 90,
+      right: 6,
+      child: CupertinoButton(
+        padding: const EdgeInsets.all(0),
+        child: Icon(
+          Icons.add_circle,
+          size: 64,
+          color: Color.fromRGBO(255, 174, 188, 1),
+        ),
+        onPressed: () {},
+      ),
+    );
+  }
+
+  CarouselSlider carouselSliderMethod() {
+    return CarouselSlider(
+      options: CarouselOptions(
+        height: 200.0,
+        viewportFraction: 0.7,
+        enlargeCenterPage: true,
+        initialPage: widget.startDayIndex,
+      ),
+      items: widget.daysOfWeek.map((i) {
+        return Builder(
+          builder: (BuildContext context) {
+            return Container(
+              width: MediaQuery.of(context).size.width,
+              margin: EdgeInsets.only(bottom: 12, left: 6, right: 6),
+              decoration: BoxDecoration(color: Colors.transparent),
+              child: CupertinoContextMenu(
+                actions: <Widget>[
+                  CupertinoContextMenuAction(
+                    child: Row(
+                      children: const [
+                        Text('Add Recipe'),
+                        Spacer(),
+                        Icon(
+                          Icons.add_circle,
+                          size: 28,
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
+                    onPressed: () {},
+                  ),
+                  CupertinoContextMenuAction(
+                    child: Row(
+                      children: const [
+                        Text(
+                          'Delete',
+                          style: TextStyle(
+                            color: Colors.red,
+                          ),
+                        ),
+                        Spacer(),
+                        Icon(
+                          Icons.remove_circle,
+                          size: 28,
+                          color: Colors.black,
+                        )
+                      ],
+                    ),
+                    onPressed: () {},
+                  ),
+                ],
+                child: Container(
+                  height: 150,
+                  width: MediaQuery.of(context).size.width / 2,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.white,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        i,
+                        style: TextStyle(
+                          fontSize: 28,
+                          color: Color.fromRGBO(103, 89, 94, 1),
+                        ),
+                      ),
+                      Text(
+                        '18',
+                        style: TextStyle(
+                          fontSize: 48,
+                          color: Color.fromRGBO(103, 89, 94, 1),
+                          fontWeight: FontWeight.w200,
+                        ),
+                      ),
+                      Text(
+                        'is not planned.\nPlease add some recipes!',
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        );
+      }).toList(),
     );
   }
 
@@ -356,8 +356,8 @@ class _GroceryListMenuState extends State<GroceryListMenu> {
       ),
       onPressed: () => Navigator.of(context).push(
         PageRouteBuilder(
-          transitionDuration: const Duration(milliseconds: 500),
-          reverseTransitionDuration: const Duration(milliseconds: 500),
+          transitionDuration: const Duration(milliseconds: 350),
+          reverseTransitionDuration: const Duration(milliseconds: 350),
           opaque: false,
           pageBuilder: (context, _, __) {
             return GroceryListMenuAlt(

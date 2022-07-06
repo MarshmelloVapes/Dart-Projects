@@ -161,10 +161,16 @@ class _RecipeListViewState extends State<RecipeListView> {
                   borderRadius: BorderRadius.circular(30),
                 ),
               ),
-              child: const Icon(
-                CupertinoIcons.left_chevron,
-                size: 28,
-                color: Color.fromRGBO(103, 89, 94, 1),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                height: 48,
+                child: const Icon(
+                  CupertinoIcons.left_chevron,
+                  size: 28,
+                  color: Color.fromRGBO(103, 89, 94, 1),
+                ),
               ),
               onPressed: () {
                 Navigator.pop(context);

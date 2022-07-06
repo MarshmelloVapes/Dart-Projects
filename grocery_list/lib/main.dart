@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grocery_list/views/grocery_list.dart';
 import 'package:grocery_list/views/home.dart';
+import 'package:grocery_list/views/recipes.dart';
 
 void main() {
   runApp(
@@ -43,9 +44,8 @@ class MainPage extends StatelessWidget {
               );
             case 2:
             default:
-              return Container(
-                alignment: Alignment.center,
-                child: const Text('Recipes Page'),
+              return CupertinoTabView(
+                builder: (context) => RecipeView(),
               );
           }
         },
