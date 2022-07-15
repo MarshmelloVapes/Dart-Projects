@@ -24,6 +24,14 @@ class GroceryListMenu extends StatefulWidget {
 }
 
 class _GroceryListMenuState extends State<GroceryListMenu> {
+  late TextEditingController _textController;
+
+  @override
+  void initState() {
+    super.initState;
+    _textController = TextEditingController(text: 'Enter item');
+  }
+
   @override
   Widget build(BuildContext context) {
     if (widget.day == "Monday") {
@@ -106,8 +114,80 @@ class _GroceryListMenuState extends State<GroceryListMenu> {
           size: 64,
           color: Color.fromRGBO(255, 174, 188, 1),
         ),
-        onPressed: () {},
+        onPressed: () {
+          showPopup();
+        },
       ),
+    );
+  }
+
+  CupertinoPopupSurface toggleAddMenu(context) {
+    return CupertinoPopupSurface(
+      isSurfacePainted: true,
+      child: Container(
+          alignment: Alignment.center,
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).copyWith().size.height * 0.35,
+          child: Material(child: Text("This is a popup surface"))),
+    );
+  }
+
+  void showPopup() {
+    showCupertinoModalPopup(
+      context: context,
+      builder: (BuildContext builder) {
+        return CupertinoPopupSurface(
+          isSurfacePainted: true,
+          child: Container(
+            padding: EdgeInsetsDirectional.all(20),
+            width: MediaQuery.of(context).size.width,
+            color: CupertinoColors.white,
+            height: MediaQuery.of(context).copyWith().size.height / 1.8,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Please enter your item below',
+                  style: TextStyle(
+                    fontSize: 26,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 24),
+                ),
+                CupertinoTextField(
+                  expands: false,
+                  controller: _textController,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 24),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Please select quanity',
+                      style: TextStyle(
+                        fontSize: 28,
+                      ),
+                    ),
+                    CupertinoButton(
+                      padding: const EdgeInsets.all(0),
+                      child: Text(
+                        '1',
+                        style: TextStyle(
+                          fontSize: 28,
+                        ),
+                      ),
+                      onPressed: () {},
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -177,14 +257,6 @@ class _GroceryListMenuState extends State<GroceryListMenu> {
                         style: TextStyle(
                           fontSize: 28,
                           color: Color.fromRGBO(103, 89, 94, 1),
-                        ),
-                      ),
-                      Text(
-                        '18',
-                        style: TextStyle(
-                          fontSize: 48,
-                          color: Color.fromRGBO(103, 89, 94, 1),
-                          fontWeight: FontWeight.w200,
                         ),
                       ),
                       Text(
